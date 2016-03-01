@@ -32,16 +32,26 @@ var main = (function(){
 	    tasks = JSON.parse(todoStorage.getItem('tasks'));
 	    tasks.push(data);
 	    todoStorage.setItem('tasks', JSON.stringify(tasks));
+		syncDatabase();
 	};
 
 	var readTodoList = function(){
 		return JSON.parse(todoStorage.getItem('tasks'));
 	};
 
+	var syncDatabase = function(){
+		var request = new XMLHttpRequest();
+		request.addEventListener('load', function(data){
+			console.log(data);
+			console.log(arguments);
+		});
+		request.open('POST', 'localhost:8080/tasks', true);
+		request.send(JSON.parse(todoStorage.getItem('tasks')));
+	}
+
 	return {
 		'start': start,
-		'saveTodo': saveTodo,
-		'getTodoList': todoList
+		'saveTodo': saveTodo
 	}
 
 })();

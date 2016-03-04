@@ -53,7 +53,6 @@ var main = (function(){
 		syncLocalToRemote();
 		syncRemoteToLocal();
 	};
-
 	return {
 		'start': start,
 		'saveTodo': saveTodo,

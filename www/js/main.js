@@ -3,11 +3,12 @@ var main = (function(){
 	var todoList = [];
 
 	var start = function(){
+
 		todoStorage = window.localStorage;
 		if(!todoStorage.getItem("tasks")){
 			todoStorage.setItem("tasks", JSON.stringify([]));
 		}
-		updateTodoList();
+		sign_in.setTemplate();
 	};
 
 	var updateTodoList = function(){
@@ -53,6 +54,7 @@ var main = (function(){
 		syncLocalToRemote();
 		syncRemoteToLocal();
 	};
+
 	return {
 		'start': start,
 		'saveTodo': saveTodo,
@@ -63,5 +65,3 @@ var main = (function(){
 	}
 
 })();
-
-document.getElementById('create-task').addEventListener('click', main.saveTodo);
